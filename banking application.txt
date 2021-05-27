@@ -1,0 +1,60 @@
+#Mini project:BANKING APPLICATION
+#opp's
+class Account:
+    # instead of 'self' we can use any name like(test,delf,etc) but recommended to use self.
+    def __init__(test,name,balance,min_balance):
+        test.name=name
+        test.balance=balance
+        test.min_balance=min_balance
+
+    # Deposite Balance
+    def Deposit(self,amount):
+        self.balance +=amount
+
+    #Withdraw Balance
+    def Withdraw(self,amount):
+        if self.balance-amount>=self.min_balance:
+            self.balance-=amount
+        else:
+            print("Sorry!!,Insufficient Balance")
+
+    def prstmt(self):
+        print("your account balance is:",self.balance)
+
+#Your Current Balance
+#Inheritance: Account=parent class,Current=child class
+class Current(Account):
+    def __init__(self,name,balance):
+        #super() method is use here to call parent class(Account) constructor.
+        super().__init__(name,balance,min_balance=-1000)
+     #__str__()==To print meaningful output string representation
+    def __str__(self):
+        return "{}'s Saving account balance is:{}".format(self.name, self.balance)
+
+#Your Saving BAlance
+#Inheritance: Account=parent class,Saving=child class
+class Saving(Account):
+    def __init__(test,name,balance):
+        # super() method is use here to call parent class(Account) constructor.
+        super().__init__(name,balance,min_balance=0)
+    def __str__(self):
+        return "{}'s Saving account balance is:{}".format(self.name,self.balance)
+
+obj=Saving("Pratima",20000)
+print(obj)
+obj.Deposit(5000)
+obj.Withdraw(2500)
+print(obj)
+print()
+obj1=Current("Abhilasha",10000)
+obj1.Deposit(6000)
+print(obj1)
+obj1.Withdraw(17000)
+print(obj1)
+print()
+obj2=Saving("susmita",15000)
+print(obj2)
+obj2.Deposit(5000)
+obj2.prstmt()
+obj2.Withdraw(21000)
+print(obj2)
